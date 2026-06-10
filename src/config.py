@@ -616,7 +616,7 @@ class Config:
     analysis_delay: float = 0.0  # 个股分析与大盘分析之间的延迟
 
     # Merge stock + market report into one notification (Issue #190)
-    merge_email_notification: bool = True
+    merge_email_notification: bool = False
 
     # 消息长度限制（字节）- 超长自动分批发送
     feishu_max_bytes: int = 20000  # 飞书限制约 20KB，默认 20000 字节
@@ -1281,7 +1281,7 @@ class Config:
                 minimum=1,
             ),
             md2img_engine=cls._parse_md2img_engine(os.getenv('MD2IMG_ENGINE', 'wkhtmltoimage')),
-            prefetch_realtime_quotes=os.getenv('PREFETCH_REALTIME_QUOTES', 'true').lower() == 'true',
+            prefetch_realtime_quotes=os.getenv('PREFETCH_REALTIME_QUOTES', 'false').lower() == 'true',
             database_path=os.getenv('DATABASE_PATH', './data/stock_analysis.db'),
             sqlite_wal_enabled=os.getenv('SQLITE_WAL_ENABLED', 'true').lower() == 'true',
             sqlite_busy_timeout_ms=parse_env_int(
